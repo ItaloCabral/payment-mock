@@ -4,8 +4,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
   background: #f0f0f5;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 export const Title = styled.h1`
