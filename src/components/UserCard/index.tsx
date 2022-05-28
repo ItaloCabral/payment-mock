@@ -1,23 +1,19 @@
 import React from "react";
-import { Container } from "./styles";
+import { Container, Image, Content, Name, Info, Button } from "./styles";
 
-interface User {
-  id: number;
-  name: string;
-  img: string;
-  username: string;
-}
+import { IUser } from "interfaces";
 
-const UserCard: React.FC<User> = (props: User) => {
+export const UserCard: React.FC<IUser> = (props: IUser) => {
 
   return (
     <Container>
-      <img src={props.img} alt={props.name} />
-      <strong>{props.name}</strong>
-      <span>{props.username}</span>
+      <Image src={props.img} alt={props.name} />
+      <Content>
+        <Name>{props.name}</Name>
+        <Info>ID: {props.id} - Username: {props.username}</Info>
+      </Content>
+      <Button>Pagar</Button>
     </Container>
   );
 
 }
-
-export default UserCard;
