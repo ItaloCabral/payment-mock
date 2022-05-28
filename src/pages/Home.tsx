@@ -3,7 +3,7 @@ import { Container, Title } from "../styles/Home";
 
 import UserCard from "../components/UserCard";
 
-const Home: React.FC = () => {
+export const Home: React.FC = () => {
 
   interface User{
     id: number;
@@ -30,10 +30,11 @@ const Home: React.FC = () => {
 
   return (
     <Container>
-      <Title>Olá mundo</Title>
+      <Title>Lista de Usuários</Title>
       {
         users.map(user => 
           <UserCard
+            key={user.id}
             id={user.id}
             name={user.name}
             img={user.img}
@@ -44,5 +45,3 @@ const Home: React.FC = () => {
     </Container>
   );
 }
-
-export default Home;
