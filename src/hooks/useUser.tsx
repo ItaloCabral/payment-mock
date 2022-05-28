@@ -11,8 +11,8 @@ export const useUser = () => {
   const getAll = useCallback(async () => {
     const { status, data } = await UsersService.getAllUsers();
     if(status !== 200) throw new Error();
-    setLoading(false);
     setUsers(data);
+    setLoading(false);
   }, []);
 
   return { users, getAll, loading };
