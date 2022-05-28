@@ -3,7 +3,7 @@ import { Container, Title } from "styles/HomeStyles";
 
 import { useUser } from "hooks";
 
-import { UserCard } from "components";
+import { UserCard, Loading } from "components";
 
 export const Home: React.FC = () => {
 
@@ -19,7 +19,7 @@ export const Home: React.FC = () => {
       <Title>Lista de Usuários</Title>
       {
         loading ? (
-          <p>Carregando...</p>
+          <Loading />
         ) : (
           users.map(user => 
             <UserCard
