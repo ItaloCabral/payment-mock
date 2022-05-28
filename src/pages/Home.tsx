@@ -18,10 +18,9 @@ export const Home: React.FC = () => {
     <Container>
       <Title>Lista de Usuários</Title>
       {
-        loading ? (
-          <Loading />
-        ) : (
-          users.map(user => 
+        loading 
+        ? <Loading />
+        : (users.map(user => 
             <UserCard
               key={user.id}
               id={user.id}
