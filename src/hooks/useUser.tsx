@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 
-import { IUser } from "../interfaces";
-import { UsersService } from "../services";
+import { IUser } from "interfaces";
+import { UsersService } from "services";
 
 export const useUser = () => {
   const [users, setUsers] = useState<IUser[]>([]);

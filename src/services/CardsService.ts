@@ -1,4 +1,4 @@
-import { ICard } from "../interfaces";
+import { ICard } from "interfaces";
 
 const cardList = [
   {
