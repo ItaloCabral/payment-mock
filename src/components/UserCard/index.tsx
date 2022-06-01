@@ -1,18 +1,39 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Image, Content, Name, Info, Button } from "./styles";
 
 import { IUser } from "interfaces";
 
-export const UserCard: React.FC<IUser> = (props: IUser) => {
+import { UserContext } from "contexts/UserContext";
+
+type UserCardProps = {
+  data: IUser;
+  toggleModal: () => void;
+};
+
+export const UserCard: React.FC<UserCardProps> = ({data, toggleModal}) => {
+
+  const { setUserState: setSelectedUser } = useContext(UserContext);
+
+  const { id, img, name, username } = data;
+
+  const handleOpenModal = () => {
+    setSelectedUser({
+      id,
+      img,
+      name,
+      username
+    });
+    toggleModal();
+  };
 
   return (
     <Container>
-      <Image src={props.img} alt={props.name} />
+      <Image src={img} alt={name} />
       <Content>
-        <Name>{props.name}</Name>
-        <Info>ID: {props.id} - Username: {props.username}</Info>
+        <Name>{name}</Name>
+        <Info>ID: {id} - Username: {username}</Info>
       </Content>
-      <Button>Pagar</Button>
+      <Button onClick={handleOpenModal}>Pagar</Button>
     </Container>
   );
 
