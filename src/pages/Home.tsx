@@ -1,16 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Title } from "styles/HomeStyles";
 
 import { useUser } from "hooks";
 
-import { UserCard, Loading } from "components";
+import { UserCard, Loading, PaymentModal } from "components";
 
 export const Home: React.FC = () => {
 
   const { users, getAll, loading } = useUser();
 
+  const [modal, setModal] = useState(false);
+
+  const toggleModal = () => {
+    setModal(!modal);
+  }
+
   useEffect(() => {
-    console.log(loading);
     getAll();
   }, [getAll]);
 
@@ -23,13 +28,12 @@ export const Home: React.FC = () => {
         : (users.map(user => 
             <UserCard
               key={user.id}
-              id={user.id}
-              name={user.name}
-              img={user.img}
-              username={user.username}
+              data={user}
+              toggleModal={toggleModal}
             />
           ))
       }
+      <PaymentModal display={modal} toggleModal={toggleModal} />
     </Container>
   );
 }
