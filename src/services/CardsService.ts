@@ -1,6 +1,6 @@
 import { ICard } from "interfaces";
 
-const cardList = [
+let cardList = [
   {
     cardNumber: '1111111111111111',
     cvv: 111,
@@ -13,8 +13,8 @@ const cardList = [
   },
 ];
 
-const getCards = (): ICard[] => cardList;
+const getAllCards = (): ICard[] => cardList;
 
-export const CardService = {
-  getCards
+export const CardsService = {
+  getAllCards
 }
