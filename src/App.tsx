@@ -1,12 +1,15 @@
 import React from 'react';
 import { GlobalStyles } from 'styles';
 import { Router } from 'router';
+import { GlobalProvider } from 'contexts';
 
 function App() {
   return (
     <>
-      <GlobalStyles />
-      <Router />
+      <GlobalProvider>
+        <GlobalStyles />
+        <Router />
+      </GlobalProvider>
     </>
   );
 }
