@@ -1,10 +1,11 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 
 import { IUser } from "interfaces";
 
 type UserContextProps = {
   userState: IUser;
   setUserState: React.Dispatch<React.SetStateAction<IUser>>;
+  eraseUserState: () => void;
 };
 
 type UserProviderProps = {
@@ -19,6 +20,7 @@ const DEFAULT_VALUE: UserContextProps = {
     img: ""
   },
   setUserState: () => {},
+  eraseUserState: () => {}
 };
 
 const UserContext = createContext<UserContextProps>(DEFAULT_VALUE);
@@ -27,8 +29,12 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
 
   const [userState, setUserState] = useState(DEFAULT_VALUE.userState);
 
+  const eraseUserState = () => {
+    setUserState(DEFAULT_VALUE.userState);
+  }
+
   return (
-    <UserContext.Provider value={{ userState, setUserState }}>
+    <UserContext.Provider value={{ userState, setUserState, eraseUserState }}>
       {children}
     </UserContext.Provider>
   );
