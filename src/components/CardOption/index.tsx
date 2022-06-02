@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import { Container, InfoCard } from './styles';
 
@@ -17,7 +17,7 @@ export const CardOption: React.FC<ICard> = (props: ICard) => {
 
   return (
     <Container onClick={handleCardSelection}>
-      <InfoCard isSelected={cardState.cvv == cvv}>
+      <InfoCard isSelected={cardState.cvv === cvv}>
         <div>
           <span>Número: {cardNumber}</span>
         </div>
