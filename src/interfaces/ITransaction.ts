@@ -1,12 +1,12 @@
-import { ICard } from "./ICard";
-
 export interface ITransaction {
   success: boolean;
   status: string;
 }
 
 export interface ITransactionPayload {
-  card: ICard;
-  destinationUserId: number;
+  card_number: string;
+  cvv: number;
+  expiry_date: string;
+  destination_user: number;
   value: number;
 }
