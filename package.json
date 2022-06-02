@@ -13,6 +13,7 @@
     "axios": "^0.27.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-input-mask": "^2.0.4",
     "react-loader": "^2.4.7",
     "react-loading": "^2.0.3",
     "react-router-dom": "^6.3.0",
@@ -47,6 +48,7 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "@types/react-input-mask": "^3.0.1",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.25"
   }
