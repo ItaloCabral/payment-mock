@@ -71,6 +71,10 @@ export const ReceiverInfo = styled.div`
   height: 100%;
   border: 1px solid #ccc;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 export const Footer = styled.div`
@@ -108,5 +112,13 @@ export const Input = styled.input`
   padding: 10px;
   font-size: 18px;
   margin: auto;
+
+`;
+
+export const Image = styled.img`
+  width: 50%;
+  border-radius: 10px;
+  margin: 20px 0;
+
 
 `;
