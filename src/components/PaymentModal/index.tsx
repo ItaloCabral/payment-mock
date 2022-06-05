@@ -17,6 +17,8 @@ import {
 import CurrencyInput from "react-currency-input-field";
 
 import { UserContext } from "contexts/UserContext";
+import { AmountContext } from "contexts/AmountContext";
+import { CardContext } from "contexts/CardContext";
 
 import { useCard } from "hooks";
 
@@ -27,11 +29,9 @@ type PaymentModalProps = {
   display: boolean;
   handleCloseModal: () => void;
   handleSubmit: () => void;
-  setAmount: React.Dispatch<React.SetStateAction<number>>;
-  amount: number;
 }; 
 
-export const PaymentModal: React.FC<PaymentModalProps> = ({ display, handleCloseModal, handleSubmit, setAmount, amount }) => {
+export const PaymentModal: React.FC<PaymentModalProps> = ({ display, handleCloseModal, handleSubmit }) => {
 
   const [loading, setLoading] = useState(false);
     
@@ -43,13 +43,25 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ display, handleClose
   const { cards, getCards } = useCard();
 
   const { userState } = useContext(UserContext);
+  const { amountState, setAmountState } = useContext(AmountContext);
+  const { cardState } = useContext(CardContext);
 
   const handleAmmountChange = (value: string | undefined, name?: string | undefined, values?: CurrencyInputOnChangeValues | undefined) => {
-    setAmount(values?.float??0);
+    setAmountState(values?.float??0);
   };
 
   const handleClick = () => {
     if(loading){
+      return;
+    }
+
+    if(!cardState.cardNumber) {
+      alert("Selecione um cartão");
+      return;
+    }
+    
+    if(!amountState) {
+      alert("Informe um valor");
       return;
     }
 
@@ -88,7 +100,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ display, handleClose
                 groupSeparator="."
                 decimalSeparator=","
                 onValueChange={handleAmmountChange}
-                value={amount}
+                value={amountState}
                 prefix="R$"
               />
             </WalletInfo>
@@ -99,7 +111,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ display, handleClose
             </ReceiverInfo>
           </Content>
           <Footer>
-            <Button onClick={() => handleCloseModal()} color="#f55">Cancelar</Button>
+            <Button loading={loading} onClick={() => handleCloseModal()} color="#f55">Cancelar</Button>
             <Button loading={loading} onClick={() => handleClick()}>Pagar</Button>
           </Footer>
         </Container>
