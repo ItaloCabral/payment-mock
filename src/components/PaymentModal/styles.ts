@@ -64,6 +64,16 @@ export const WalletInfo = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
+
+  input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    margin: auto;
+  }
 `;
 
 export const ReceiverInfo = styled.div`
@@ -86,7 +96,7 @@ export const Footer = styled.div`
   border-top: 1px solid #ccc;
 `;
 
-export const Button = styled.button<{color?: string}>`
+export const Button = styled.button<{color?: string, loading?: boolean}>`
   background: transparent;
   color: ${props => (props.color ? props.color : "#4caf50")};
   border: 1px solid ${props => (props.color ? props.color : "#4caf50")};
@@ -97,6 +107,7 @@ export const Button = styled.button<{color?: string}>`
   cursor: pointer;
   height: 30px;
   transition: 0.2s;
+  ${props => props.loading && "pointer-events: none; opacity: 0.5;"}
 
   &:hover {
     background: ${props => (props.color ? props.color : "#4caf50")};
@@ -104,21 +115,8 @@ export const Button = styled.button<{color?: string}>`
   }
 `;
 
-export const Input = styled.input`
-  width: 100%;
-  height: 40px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 18px;
-  margin: auto;
-
-`;
-
 export const Image = styled.img`
   width: 50%;
   border-radius: 10px;
   margin: 20px 0;
-
-
 `;

@@ -11,30 +11,51 @@ import {
   Footer,
   SubTitle,
   Button,
-  Input,
   Image
 } from "./styles";
 
-import InputMask from "react-input-mask";
+import CurrencyInput from "react-currency-input-field";
 
 import { UserContext } from "contexts/UserContext";
 
 import { useCard } from "hooks";
 
 import { CardOption } from "components";
+import { CurrencyInputOnChangeValues } from "react-currency-input-field/dist/components/CurrencyInputProps";
 
 type PaymentModalProps = {
   display: boolean;
-  toggleModal: React.Dispatch<React.SetStateAction<void>>;
+  handleCloseModal: () => void;
   handleSubmit: () => void;
   setAmount: React.Dispatch<React.SetStateAction<number>>;
-};
+  amount: number;
+}; 
 
-export const PaymentModal: React.FC<PaymentModalProps> = ({ display, toggleModal, handleSubmit, setAmount }) => {
+export const PaymentModal: React.FC<PaymentModalProps> = ({ display, handleCloseModal, handleSubmit, setAmount, amount }) => {
+
+  const [loading, setLoading] = useState(false);
+    
+  useEffect(() => {
+    setLoading(false);
+  }, [display]);
+
 
   const { cards, getCards } = useCard();
 
   const { userState } = useContext(UserContext);
+
+  const handleAmmountChange = (value: string | undefined, name?: string | undefined, values?: CurrencyInputOnChangeValues | undefined) => {
+    setAmount(values?.float??0);
+  };
+
+  const handleClick = () => {
+    if(loading){
+      return;
+    }
+
+    setLoading(true);
+    handleSubmit();
+  }
 
   useEffect(() => {
     getCards();
@@ -58,10 +79,17 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ display, toggleModal
                   />
                 ))
               }
-              <Input
-                type="text"
+              <CurrencyInput
+                id="amount"
+                name="amount"
                 placeholder="Valor a ser transferido"
-                onChange={(e) => setAmount(Number(e.target.value))}
+                defaultValue={0}
+                decimalsLimit={2}
+                groupSeparator="."
+                decimalSeparator=","
+                onValueChange={handleAmmountChange}
+                value={amount}
+                prefix="R$"
               />
             </WalletInfo>
             <ReceiverInfo>
@@ -71,8 +99,8 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ display, toggleModal
             </ReceiverInfo>
           </Content>
           <Footer>
-            <Button onClick={() => toggleModal()} color="#f55">Cancelar</Button>
-            <Button onClick={() => { handleSubmit() }}>Pagar</Button>
+            <Button onClick={() => handleCloseModal()} color="#f55">Cancelar</Button>
+            <Button loading={loading} onClick={() => handleClick()}>Pagar</Button>
           </Footer>
         </Container>
     </BackDrop>
