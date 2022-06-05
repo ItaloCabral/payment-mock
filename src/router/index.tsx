@@ -8,7 +8,7 @@ import {
 import { Home } from 'pages';
 
 export const Router = () => (
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="*" element={<Navigate to="/" />} />

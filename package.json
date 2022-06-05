@@ -1,6 +1,7 @@
 {
   "name": "payment-mock",
   "version": "0.1.0",
+  "homepage": "https://italocabral.github.io/payment-mock", 
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -27,7 +28,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +53,7 @@
     "@types/axios": "^0.14.0",
     "@types/react-input-mask": "^3.0.1",
     "@types/react-router-dom": "^5.3.3",
-    "@types/styled-components": "^5.1.25"
+    "@types/styled-components": "^5.1.25",
+    "gh-pages": "^4.0.0"
   }
 }
