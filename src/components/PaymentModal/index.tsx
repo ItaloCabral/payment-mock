@@ -29,9 +29,10 @@ type PaymentModalProps = {
   handleSubmit: () => void;
   setAmount: React.Dispatch<React.SetStateAction<number>>;
   amount: number;
+  cardNumber: string;
 }; 
 
-export const PaymentModal: React.FC<PaymentModalProps> = ({ display, handleCloseModal, handleSubmit, setAmount, amount }) => {
+export const PaymentModal: React.FC<PaymentModalProps> = ({ display, handleCloseModal, handleSubmit, setAmount, amount, cardNumber}) => {
 
   const [loading, setLoading] = useState(false);
     
@@ -100,7 +101,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ display, handleClose
           </Content>
           <Footer>
             <Button onClick={() => handleCloseModal()} color="#f55">Cancelar</Button>
-            <Button loading={loading} onClick={() => handleClick()}>Pagar</Button>
+            <Button disabled={!cardNumber.length || !amount} loading={loading} onClick={() => handleClick()}>Pagar</Button>
           </Footer>
         </Container>
     </BackDrop>

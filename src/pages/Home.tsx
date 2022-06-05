@@ -94,7 +94,7 @@ export const Home: React.FC = () => {
             />
           ))
       }
-      <PaymentModal display={modal} handleSubmit={handleSubmit} handleCloseModal={handleCloseModal} setAmount={setAmount} amount={amount} />
+      <PaymentModal display={modal} handleSubmit={handleSubmit} handleCloseModal={handleCloseModal} setAmount={setAmount} amount={amount} cardNumber={cardState.cardNumber} />
       <Alert show={showAlert} transactionInfo={transaction} toggleAlert={toggleAlert} />
     </Container>
   );
