@@ -19,11 +19,10 @@ export const CardOption: React.FC<ICard> = (props: ICard) => {
     <Container onClick={handleCardSelection}>
       <InfoCard isSelected={cardState.cvv === cvv}>
         <div>
-          <span>Número: {cardNumber}</span>
+          <span>Cartão com final {cardNumber.slice(11, 15)}</span>
         </div>
-          <span>Expira em: {expiryDate}</span>
         <div>
-          <span>CVV: {cvv}</span>
+          <span>Expira em: {expiryDate}</span>
         </div>
       </InfoCard>
     </Container>
