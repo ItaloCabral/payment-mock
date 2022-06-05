@@ -70,7 +70,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ display, handleClose
           </Header>
           <Content>
             <WalletInfo>
-              <SubTitle>Slecione um cartão:</SubTitle>
+              <SubTitle>Selecione um cartão:</SubTitle>
               {
                 cards.map(card => (
                   <CardOption key={card.cardNumber}
