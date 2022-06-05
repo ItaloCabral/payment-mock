@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/static/js/main.d7b08684.js",
-    "index.html": "/index.html",
-    "main.d7b08684.js.map": "/static/js/main.d7b08684.js.map"
+    "main.js": "/payment-mock/static/js/main.0c7bd837.js",
+    "index.html": "/payment-mock/index.html",
+    "main.0c7bd837.js.map": "/payment-mock/static/js/main.0c7bd837.js.map"
   },
   "entrypoints": [
-    "static/js/main.d7b08684.js"
+    "static/js/main.0c7bd837.js"
   ]
 }
