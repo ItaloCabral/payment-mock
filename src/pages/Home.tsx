@@ -18,12 +18,15 @@ export const Home: React.FC = () => {
   const { cardState, eraseCardState } = useContext(CardContext);
   const { userState, eraseUserState } = useContext(UserContext);
 
-  const [transactions, setTransactions] = useState<ITransaction|[]>([]);
+  const [transaction, setTransactions] = useState<ITransaction>({
+    success: false,
+    status: "",
+  });
 
   const { createTransaction } = TransactionsService;
 
   const [modal, setModal] = useState(false);
-  const [showAlert, setAlert] = useState(true);
+  const [showAlert, setAlert] = useState(false);
 
   const [amount, setAmount] = useState(0);
 
@@ -33,6 +36,13 @@ export const Home: React.FC = () => {
 
   const toggleAlert = () => {
     setAlert(!showAlert);
+  }
+
+  const handleCloseModal = () => {
+    eraseCardState();
+    eraseUserState();
+    setAmount(0);
+    toggleModal();
   }
 
   const handleSubmit = async () => {
@@ -61,20 +71,14 @@ export const Home: React.FC = () => {
     setAmount(0);    
     
     toggleModal();
-    alert(JSON.stringify(data));
+    setTransactions(data);
+    toggleAlert();
     
   }
 
   useEffect(() => {
     getAll();
   }, [getAll]);
-  useEffect(() => {
-    console.log(
-      cardState,
-      userState,
-      amount
-    )
-  }, [amount]);
 
   return (
     <Container>
@@ -90,8 +94,8 @@ export const Home: React.FC = () => {
             />
           ))
       }
-      <PaymentModal display={modal} handleSubmit={handleSubmit} toggleModal={toggleModal} setAmount={setAmount} />
-      <Alert show={showAlert} transactionInfo={transactions} toggleAlert={toggleAlert} />
+      <PaymentModal display={modal} handleSubmit={handleSubmit} handleCloseModal={handleCloseModal} setAmount={setAmount} amount={amount} />
+      <Alert show={showAlert} transactionInfo={transaction} toggleAlert={toggleAlert} />
     </Container>
   );
 }
