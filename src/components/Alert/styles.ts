@@ -17,11 +17,10 @@ export const Container = styled.div`
   padding: 20px;
   padding-bottom: 0px;
   z-index: 101;
-  width: 80%;
-  height: 60%;
+  width: 500px;
   background-color: #fff;
   border-radius: 10px;
-  min-height: 500px;
+  min-height: 200px;
 `;
 
 export const Header = styled.div`
@@ -40,36 +39,12 @@ export const Title = styled.h2`
   margin-bottom: 20px;
 `;
 
-export const SubTitle = styled.h2`
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-`;
-
 export const Content = styled.div`
   display: grid;
   place-items: center;
   width: 100%;
-  height: calc(80% - 50px);
+  height: 100px;
   margin: 20px 0;
-`;
-
-export const WalletInfo = styled.div`
-  height: 100%;
-  flex: 5;
-  margin-right: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 20px;
-`;
-
-export const ReceiverInfo = styled.div`
-  flex: 4;
-  height: 100%;
-  border: 1px solid #ccc;
-  border-radius: 10px;
 `;
 
 export const Footer = styled.div`
@@ -77,7 +52,7 @@ export const Footer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(20% - 50px);
+  height: 50px;
   border-top: 1px solid #ccc;
 `;
 
