@@ -47,9 +47,8 @@ export const SubTitle = styled.h2`
 `;
 
 export const Content = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  place-items: center;
   width: 100%;
   height: calc(80% - 50px);
   margin: 20px 0;
@@ -75,7 +74,7 @@ export const ReceiverInfo = styled.div`
 
 export const Footer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: calc(20% - 50px);
