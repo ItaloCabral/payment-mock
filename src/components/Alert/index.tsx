@@ -1,7 +1,7 @@
 import { ITransaction } from 'interfaces';
 import React from 'react';
 
-import { Container, BackDrop, Header, Title, Content, SubTitle, Footer, Button } from "./styles";
+import { Container, BackDrop, Header, Title, Content, Footer, Button } from "./styles";
 
 type AlertProps = {
   show: boolean;

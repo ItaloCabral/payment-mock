@@ -17,11 +17,12 @@ export const Container = styled.div`
   padding: 20px;
   padding-bottom: 0px;
   z-index: 101;
-  width: 80%;
+  /* width: 80%; */
   height: 60%;
   background-color: #fff;
   border-radius: 10px;
   min-height: 500px;
+  width: 500px;
 `;
 
 export const Header = styled.div`

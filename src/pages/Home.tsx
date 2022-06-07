@@ -9,6 +9,7 @@ import { TransactionsService } from "services";
 
 import { UserContext } from "contexts/UserContext";
 import { CardContext } from "contexts/CardContext";
+import { AmountContext } from "contexts/AmountContext";
 import { ITransaction } from "interfaces";
 
 export const Home: React.FC = () => {
@@ -17,6 +18,7 @@ export const Home: React.FC = () => {
 
   const { cardState, eraseCardState } = useContext(CardContext);
   const { userState, eraseUserState } = useContext(UserContext);
+  const { amountState, eraseAmountState } = useContext(AmountContext);
 
   const [transaction, setTransactions] = useState<ITransaction>({
     success: false,
@@ -27,8 +29,6 @@ export const Home: React.FC = () => {
 
   const [modal, setModal] = useState(false);
   const [showAlert, setAlert] = useState(false);
-
-  const [amount, setAmount] = useState(0);
 
   const toggleModal = () => {
     setModal(!modal);
@@ -41,32 +41,24 @@ export const Home: React.FC = () => {
   const handleCloseModal = () => {
     eraseCardState();
     eraseUserState();
-    setAmount(0);
+    eraseAmountState();
     toggleModal();
   }
 
   const handleSubmit = async () => {
-    if(!cardState.cardNumber) {
-      alert("Selecione um cartão");
-      return;
-    }
-    if(!amount) {
-      alert("Informe um valor");
-      return;
-    }
 
     const { data } = await createTransaction({
       card_number: cardState.cardNumber,
       cvv: cardState.cvv,
       expiry_date: cardState.expiryDate,
-      value: amount,
+      value: amountState,
       destination_user: userState.id
     })
 
     setTransactions(data);
     eraseCardState();
     eraseUserState();
-    setAmount(0);    
+    eraseAmountState();    
     
     toggleModal();
     setTransactions(data);
@@ -92,7 +84,7 @@ export const Home: React.FC = () => {
             />
           ))
       }
-      <PaymentModal display={modal} handleSubmit={handleSubmit} handleCloseModal={handleCloseModal} setAmount={setAmount} amount={amount} cardNumber={cardState.cardNumber} />
+      <PaymentModal display={modal} handleSubmit={handleSubmit} handleCloseModal={handleCloseModal} />
       <Alert show={showAlert} transactionInfo={transaction} toggleAlert={toggleAlert} />
     </Container>
   );
