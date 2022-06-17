@@ -112,7 +112,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ display, handleClose
           </Content>
           <Footer>
             <Button onClick={() => handleCloseModal()} color="#f55">Cancelar</Button>
-            <Button disabled={!cardState.cardNumber || !amountState} $loading={loading} onClick={() => handleClick()}>Pagar</Button>
+            <Button  $loading={loading} onClick={() => handleClick()}>Pagar</Button>
           </Footer>
         </Container>
     </BackDrop>
