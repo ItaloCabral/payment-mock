@@ -97,7 +97,7 @@ export const Footer = styled.div`
   border-top: 1px solid #ccc;
 `;
 
-export const Button = styled.button<{color?: string, loading?: boolean}>`
+export const Button = styled.button<{color?: string, $loading?: boolean}>`
   background: transparent;
   color: ${props => (props.color ? props.color : "#4caf50")};
   border: 1px solid ${props => (props.color ? props.color : "#4caf50")};
@@ -108,7 +108,7 @@ export const Button = styled.button<{color?: string, loading?: boolean}>`
   cursor: pointer;
   height: 30px;
   transition: 0.2s;
-  ${props => props.loading && "pointer-events: none; opacity: 0.5;"}
+  ${props => props.$loading && "pointer-events: none; opacity: 0.5;"}
 
   &:hover {
     background: ${props => (props.color ? props.color : "#4caf50")};

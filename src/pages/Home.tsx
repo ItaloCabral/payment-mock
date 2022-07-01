@@ -47,15 +47,13 @@ export const Home: React.FC = () => {
 
   const handleSubmit = async () => {
 
-    const response = await createTransaction({
+    const { data } = await createTransaction({
       card_number: cardState.cardNumber,
       cvv: cardState.cvv,
       expiry_date: cardState.expiryDate,
       value: amountState,
       destination_user: userState.id
     })
-
-    const data = await response.data;
 
     setTransactions(data);
     eraseCardState();
